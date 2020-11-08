@@ -1,0 +1,10 @@
+<mat-sidenav-container class="example-container" *ngIf="shouldRun">
+    <mat-sidenav class="side-bar" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                 (closed)="events.push('close!')">
+      Sidenav content
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+        <span mat-button class="arrow-sidebar material-icons"  (click)="sidenav.toggle(); changeIconArrow();" >{{ arrow }}</span>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

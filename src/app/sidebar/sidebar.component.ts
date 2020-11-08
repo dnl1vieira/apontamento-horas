@@ -6,10 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+  arrow;
+  isClose = true;
+  events: string[] = ["open!"];
+  opened: boolean;
+
+  shouldRun = true;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.changeIconArrow();
+  }
+
+  changeIconArrow() {  
+    if(this.isClose){
+      this.arrow = "keyboard_arrow_right";
+      this.isClose = false; 
+    }else{
+      this.arrow = "keyboard_arrow_left";
+      this.isClose = true; 
+    }
+    
   }
 
 }
