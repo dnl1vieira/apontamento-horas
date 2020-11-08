@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   arrow;
   isClose = true;
-  events: string[] = ["open!"];
+  events: string[] = [];
   opened: boolean;
 
   shouldRun = true;
