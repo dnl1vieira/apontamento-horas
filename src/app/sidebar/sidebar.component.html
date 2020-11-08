@@ -1,7 +1,11 @@
 <mat-sidenav-container class="example-container" *ngIf="shouldRun">
     <mat-sidenav class="side-bar" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
                  (closed)="events.push('close!')">
-      Sidenav content
+      <ul class="title-list-side-bar">
+          <li><button class="item-list" mat-stroked-button><span class="icon-list material-icons">
+            query_builder
+            </span> Apontamento</button></li>
+      </ul>
     </mat-sidenav>
   
     <mat-sidenav-content>

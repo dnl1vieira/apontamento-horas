@@ -19,4 +19,21 @@
   }
   .arrow-sidebar{
     margin-top: 300px;
+    cursor: pointer;
+  }
+
+  .title-list-side-bar{
+    list-style:none;
+    margin-left: -40px;
+    margin-top: 0;
+  }
+  .item-list{
+    cursor: pointer;
+    align-content: center;
+    width: 150px;
+    height: 50px;
+  }
+  .icon-list{
+    margin-top: 0px;
+    margin-left: -10px;
   }
