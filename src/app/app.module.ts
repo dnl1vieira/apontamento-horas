@@ -5,6 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { AddHourPointComponent } from './add-hour-point/add-hour-point.component';
+
+//HTTP
+import { HttpClientModule } from '@angular/common/http';
 
 // Material Modules
 import {NgModule} from '@angular/core';
@@ -51,15 +57,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    AddHourPointComponent
   ],
   imports: [
     A11yModule,
@@ -108,7 +113,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ScrollingModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

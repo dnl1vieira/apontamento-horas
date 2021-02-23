@@ -1,14 +1,24 @@
 <mat-sidenav-container class="example-container" *ngIf="shouldRun">
     <mat-sidenav class="side-bar" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
-                 (closed)="events.push('close!')">
-      <ul class="title-list-side-bar">
-          <li><button class="item-list" mat-stroked-button><span class="icon-list material-icons">
-            query_builder
-            </span> Apontamento</button></li>
-      </ul>
+        (closed)="events.push('close!')">
+        <ul class="title-list-side-bar">
+            <li class="side-bar-list">
+                <span class="icon-list material-icons">
+                    query_builder
+                </span> Apontamento
+            </li>
+        </ul>
     </mat-sidenav>
-  
-    <mat-sidenav-content>
-        <span mat-button class="arrow-sidebar material-icons"  (click)="sidenav.toggle(); changeIconArrow();" >{{ arrow }}</span>
+
+
+
+    <mat-sidenav-content class="container-sidenav">
+        <span mat-button class="arrow-sidebar material-icons" (click)="sidenav.toggle(); changeIconArrow();">
+            {{ arrow }}
+        </span>
+        <mat-card class="main-card">
+            <router-outlet></router-outlet>
+        </mat-card>
+
     </mat-sidenav-content>
-  </mat-sidenav-container>
+</mat-sidenav-container>
