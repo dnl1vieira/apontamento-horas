@@ -10,7 +10,7 @@ export class SidebarComponent implements OnInit {
   arrow: String;
   isClose = true;
   events: string[] = [];
-  opened: boolean;
+  opened: boolean = true;
 
   shouldRun = true;
 

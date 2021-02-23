@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddHourPointComponent } from '../add-hour-point/add-hour-point.component';
 import { PointServiceService } from './point-service.service';
 import { timePoint } from './timePoint';
 
@@ -33,7 +35,8 @@ export class HomeComponent implements OnInit {
   dataSource = ELEMENT_DATA;
 
   constructor(
-    private service: PointServiceService) { }
+    private service: PointServiceService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -48,5 +51,17 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  openNewTimePoint(): void {
+    const dialogRef = this.dialog.open(AddHourPointComponent , {
+      width: '400px',
+      height: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+
 
 }
