@@ -1,4 +1,5 @@
 export interface TimePoint {
+  id: number;
   customer: string;
   hour: string;
   project: string;

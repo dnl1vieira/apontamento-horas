@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddHourPointComponent } from '../add-hour-point/add-hour-point.component';
+import { ConfirmActionComponent } from '../core/confirm-action/confirm-action.component';
 import { PointServiceService } from './point-service.service';
 import { TimePoint } from './TimePoint';
 
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   getAll() {
     this.service.listAll().subscribe(resp => {
-      this.listTimePoints = resp["_embedded"]["time-points"];
+      this.listTimePoints = resp["content"];
       this.dataSource = this.listTimePoints
     },
       err => {
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
   openNewTimePoint(element) {
     const dialogConfig = {
       width: '400px',
-      height: '500px',
+      height: '530px',
       data: element
     }
 
@@ -54,8 +55,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  delete(element){
-    console.log("Deletei saparada ai!")
+  delete(value) {
+    this.dialog.open(
+      ConfirmActionComponent,
+      { data: { message: 'Certeza que deseja deletar esse registro?' } }
+    )
+      .afterClosed().subscribe(
+        result => {
+          this.service.delete(value).subscribe(
+            () => { this.getAll(); }
+          );
+        }
+      );
   }
 
 }

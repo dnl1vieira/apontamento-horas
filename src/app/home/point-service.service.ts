@@ -18,8 +18,9 @@ export class PointServiceService {
   ) { }
 
   listAll(): Observable<any> {
-    const url = this.urlBase + '/search/getAllTimePoint';
-    return this.http.get(url).pipe(
+
+    const url = this.urlBase + 'api/time-point/findAll';
+    return this.http.get(url, { responseType: 'json' }).pipe(
       retry(3),
       catchError(() => {
         return EMPTY;
@@ -29,8 +30,13 @@ export class PointServiceService {
   }
 
   create(result): Observable<any> {
-    const url = this.urlBase + '/save';
+    const url = this.urlBase + 'api/time-point/saveOrUpdate';
 
-    return this.http.post(url, result);
+    return this.http.post(url, result, { responseType: 'text' });
+  }
+
+  delete(value): Observable<any> {
+    const url = this.urlBase + 'api/time-point/delete';
+    return this.http.delete(url + '/' + value.id, { responseType: 'text' });
   }
 }

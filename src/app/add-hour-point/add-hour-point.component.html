@@ -43,7 +43,7 @@
     </form>
     <div class="direct-buttons" mat-dialog-actions>
         <button class="btn-cancel" mat-stroked-button (click)="onNoClick()">Cancelar</button>
-        <button mat-raised-button color="primary">Salvar</button>
+        <button mat-raised-button [mat-dialog-close]="formTimePoint.getRawValue()" color="primary" [disabled]="!formTimePoint.valid">Salvar</button>
     </div>
 
 </div>

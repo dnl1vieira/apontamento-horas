@@ -44,5 +44,4 @@ export class AddHourPointComponent implements OnInit {
     this.dialogRef.close();
   }
 
-
 }
