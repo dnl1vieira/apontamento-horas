@@ -8,7 +8,7 @@
 export const environment = {
   production: false,
   env_name: 'dev',
-  backendUrl: 'http://localhost:8080/api'
+  backendUrl: 'http://localhost:8080/time-point'
 };
 
 /*

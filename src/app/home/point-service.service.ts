@@ -11,15 +11,14 @@ const BACKEND_URL = environment.backendUrl;
 })
 export class PointServiceService {
 
-  urlBase = BACKEND_URL + '/time-point';
+  urlBase = BACKEND_URL;
 
   constructor(
     private http: HttpClient
   ) { }
 
   listAll(): Observable<any> {
-    const url = this.urlBase + '/listAll';
-
+    const url = this.urlBase + '/search/getAllTimePoint';
     return this.http.get(url).pipe(
       retry(3),
       catchError(() => {
@@ -27,5 +26,11 @@ export class PointServiceService {
       }), shareReplay()
     );
 
+  }
+
+  create(result): Observable<any> {
+    const url = this.urlBase + '/save';
+
+    return this.http.post(url, result);
   }
 }

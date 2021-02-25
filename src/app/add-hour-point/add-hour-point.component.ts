@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-hour-point',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddHourPointComponent implements OnInit {
 
-  constructor() { }
+  formTimePoint: FormGroup;
+
+  constructor(public dialogRef: MatDialogRef<AddHourPointComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data,
+    private formBuilder: FormBuilder,
+    ) { }
 
   ngOnInit(): void {
+    if(this.data){
+      this.formTimePoint = this.formBuilder.group({
+        customer: [this.data.customer],
+        date: [this.data.date],
+        description: [this.data.description],
+        hour: [this.data.hour],
+        manager: [this.data.manager],
+        project: [this.data.project],
+        service: [this.data.service]
+      })
+    }else{
+      this.formTimePoint = this.formBuilder.group({
+        customer: [""],
+        date: [""],
+        description: [""],
+        hour: [""],
+        manager: [""],
+        project: [""],
+        service: [""]
+      })
+    }
   }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 
 }

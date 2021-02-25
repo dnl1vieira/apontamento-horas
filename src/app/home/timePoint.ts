@@ -1,9 +1,9 @@
-export interface timePoint {
-  customer: String;
-  hour: String;
-  project: String;
-  service: String;
-  description: String;
-  manager: String;
+export interface TimePoint {
+  customer: string;
+  hour: string;
+  project: string;
+  service: string;
+  description: string;
+  manager: string;
   date: Date;
 }

@@ -2,27 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddHourPointComponent } from '../add-hour-point/add-hour-point.component';
 import { PointServiceService } from './point-service.service';
-import { timePoint } from './timePoint';
-
-// TODO Adjust to my object "TIMEPOINT"
-export interface PeriodicElement {
-  name: string;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { name: 'Boron', weight: 10.811, symbol: 'B' },
-  { name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+import { TimePoint } from './TimePoint';
 
 @Component({
   selector: 'app-home',
@@ -31,8 +11,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class HomeComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  listTimePoints: TimePoint[] = [];
+  displayedColumns: string[] = ['customer', 'date', 'manager', 'project', 'hour', 'description', 'actions'];
+  dataSource = [];
 
   constructor(
     private service: PointServiceService,
@@ -44,7 +25,8 @@ export class HomeComponent implements OnInit {
 
   getAll() {
     this.service.listAll().subscribe(resp => {
-      console.log(resp);
+      this.listTimePoints = resp["_embedded"]["time-points"];
+      this.dataSource = this.listTimePoints
     },
       err => {
         console.log(err);
@@ -52,16 +34,28 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  openNewTimePoint(): void {
-    const dialogRef = this.dialog.open(AddHourPointComponent , {
+  openNewTimePoint(element) {
+    const dialogConfig = {
       width: '400px',
-      height: '500px'
-    });
+      height: '500px',
+      data: element
+    }
+
+    const dialogRef = this.dialog.open(AddHourPointComponent, dialogConfig)
 
     dialogRef.afterClosed().subscribe(result => {
-      
+      if (result) {
+        this.service.create(result).subscribe(
+          resp => this.getAll(),
+          err => console.log(err)
+        );
+      }
+
     });
   }
 
+  delete(element){
+    console.log("Deletei saparada ai!")
+  }
 
 }
