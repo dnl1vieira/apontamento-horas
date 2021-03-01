@@ -20,3 +20,9 @@ table {
 .mat-h2{
   margin-bottom: -5px !important;
 }
+.expansion-panel{
+  margin-bottom: 15px;
+}
+.btn-filter{
+  margin-left: 15px;
+}

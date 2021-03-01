@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, Optional } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -10,38 +10,45 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddHourPointComponent implements OnInit {
 
   formTimePoint: FormGroup;
+  title: string;
+  services: string[] = ['DESENVOLVIMENTO', 'TESTES', 'SUPORTE'];
 
   constructor(public dialogRef: MatDialogRef<AddHourPointComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data,
     private formBuilder: FormBuilder,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    if(this.data){
+    if (this.data) {
+      this.title = "Editar Apontamento"
       this.formTimePoint = this.formBuilder.group({
-        customer: [this.data.customer],
-        date: [this.data.date],
-        description: [this.data.description],
-        hour: [this.data.hour],
-        manager: [this.data.manager],
-        project: [this.data.project],
-        service: [this.data.service]
+        id: [this.data.id],
+        customer: [this.data.customer, Validators.required],
+        date: [this.data.date, Validators.required],
+        description: [this.data.description, Validators.required],
+        hour: [this.data.hour, Validators.required],
+        manager: [this.data.manager, Validators.required],
+        project: [this.data.project, Validators.required],
+        service: [this.data.service, Validators.required]
       })
-    }else{
+    } else {
+      this.title = "Novo Apontamento"
       this.formTimePoint = this.formBuilder.group({
-        customer: [""],
-        date: [""],
-        description: [""],
-        hour: [""],
-        manager: [""],
-        project: [""],
-        service: [""]
+        id: [""],
+        customer: ["", Validators.required],
+        date: ["", Validators.required],
+        description: ["", Validators.required],
+        hour: ["", Validators.required],
+        manager: ["", Validators.required],
+        project: ["", Validators.required],
+        service: ["", Validators.required]
       })
     }
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+    this.formTimePoint.reset();
   }
 
 }

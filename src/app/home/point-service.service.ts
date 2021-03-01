@@ -17,10 +17,19 @@ export class PointServiceService {
     private http: HttpClient
   ) { }
 
-  listAll(): Observable<any> {
+  listAll(page: number = 0,
+    size: number = 5,
+    filters): Observable<any> {
+
+    let params = new HttpParams()
+      .set("page", page.toString())
+      .set("size", size.toString())
+      
+    params = params.set('dateFrom', filters.start || '');
+    params = params.set('dateTo', filters.end || '');
 
     const url = this.urlBase + 'api/time-point/findAll';
-    return this.http.get(url, { responseType: 'json' }).pipe(
+    return this.http.get(url, { responseType: 'json', params }).pipe(
       retry(3),
       catchError(() => {
         return EMPTY;
