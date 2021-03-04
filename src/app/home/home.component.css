@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+.container-title {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.line-separator {
+  margin: 15px 0px;
+}
+
+.btn-new-time-point {
+  max-width: 200px;
+}
+
+.mat-h2{
+  margin-bottom: -5px !important;
+}
+.expansion-panel{
+  margin-bottom: 15px;
+}
+.btn-filter{
+  margin-left: 15px;
+}
