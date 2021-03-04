@@ -59,6 +59,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmActionComponent } from './core/confirm-action/confirm-action.component';
+import { ExtractComponent } from './download-file/extract/extract.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ConfirmActionComponent } from './core/confirm-action/confirm-action.com
     NavbarComponent,
     SidebarComponent,
     AddHourPointComponent,
-    ConfirmActionComponent
+    ConfirmActionComponent,
+    ExtractComponent
   ],
   imports: [
     A11yModule,

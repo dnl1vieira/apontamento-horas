@@ -96,15 +96,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     )
       .afterClosed().subscribe(
         result => {
-          this.service.delete(value).subscribe(
-            resp => { 
-              this.loading = false;
-              this.getAll(this.paginator, 0, []);
-              this.alert.open(resp, this.action, {
-                duration: 2000,
-              });
-            }
-          );
+          if(result){
+            this.service.delete(value).subscribe(
+              resp => { 
+                this.loading = false;
+                this.getAll(this.paginator, 0, []);
+                  this.alert.open(resp, this.action, {
+                  duration: 2000,
+                  });
+              }
+            );
+          }
         }
       );
   }
